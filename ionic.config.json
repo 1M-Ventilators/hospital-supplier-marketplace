@@ -1,0 +1,7 @@
+{
+  "name": "hsm",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

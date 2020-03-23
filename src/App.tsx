@@ -10,6 +10,7 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { ellipse, square, triangle } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
@@ -33,6 +34,9 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+
+// Allow custom elements in react
+defineCustomElements(window);
 
 const App: React.FC = () => (
   <IonApp>

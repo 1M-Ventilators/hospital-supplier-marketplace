@@ -1,0 +1,20 @@
+// Use this file for storing localizable strings as variables. This can later be replaced with a JSON file with translations
+export default {
+  CTA_VOLUNTEER: 'I am a Volunteer',
+  CTA_MANUFACTURER: 'I am a Manufacturer',
+  CTA_HOSPITAL: 'I am a Hospital',
+  CANCEL: 'Cancel',
+  CONFIRM: 'Confirm',
+  BACK: 'Back',
+  CONTACT: 'Contact us with Feedback',
+  SEND: 'Send',
+  SUPPLIERS: 'Suppliers',
+  TRAINING: 'Training',
+  RESOURCES: 'Resource Tracking',
+  SUPPORT: 'Support',
+  QUANTITY: 'Quantity',
+  GOWNS: 'Medical gowns',
+  MASKS: 'N95 masks',
+  BEDS: 'Hospital beds',
+  VIDEOS: 'Ventilator training videos',
+}

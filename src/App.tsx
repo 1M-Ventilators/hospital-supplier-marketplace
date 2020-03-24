@@ -11,10 +11,11 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
-import { listOutline, trainOutline, mailOutline } from 'ionicons/icons';
+import { constructOutline, trainOutline, mailOutline, hourglassOutline } from 'ionicons/icons';
 import Home from './pages/Home';
 import Training from './pages/Training';
 import Feedback from './pages/Feedback';
+import Tracking from './pages/Tracking';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -45,17 +46,22 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route path="/home" component={Home} exact={true} />
           <Route path="/training" component={Training} exact={true} />
-          <Route path="/feedback" component={Feedback} />
+          <Route path="/tracking" component={Tracking} exact={true} />
+          <Route path="/feedback" component={Feedback} exact={true} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="home" href="/home">
-            <IonIcon icon={listOutline} />
+            <IonIcon icon={constructOutline} />
             <IonLabel>Suppliers</IonLabel>
           </IonTabButton>
           <IonTabButton tab="training" href="/training">
             <IonIcon icon={trainOutline} />
             <IonLabel>Training</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tracking" href="/tracking">
+            <IonIcon icon={hourglassOutline} />
+            <IonLabel>Resource Tracking</IonLabel>
           </IonTabButton>
           <IonTabButton tab="feedback" href="/feedback">
             <IonIcon icon={mailOutline} />

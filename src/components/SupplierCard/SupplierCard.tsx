@@ -6,15 +6,15 @@ import allSuppliers from '../../Models/suppliers/index';
 function SupplierCard() {
   return (
     <div>
-        {allSuppliers.map((item, name) => (
-          <IonCard key={name} >
+        {allSuppliers.map((supplier, index) => (
+          <IonCard key={index} >
             <IonCardContent>
-              <IonCardTitle>{item.name}</IonCardTitle>
+              <IonCardTitle>{supplier.name}</IonCardTitle>
               <IonCardContent>
-              <p>{item.address}</p>
-              <p>{item.website}</p>
-              <p>{item.numbers.main}</p>
-              <p>{item.email}</p>
+              <p><strong>Phone Number:</strong> {supplier.numbers.main}</p>
+              <p><strong>Email:</strong> {supplier.email}</p>
+              <p><strong>Website:</strong> <a target="blank" href={supplier.website}>{supplier.website}</a></p>
+              <p><strong>Address:</strong> {supplier.address}</p>
               </IonCardContent>
             </IonCardContent>
           </IonCard>

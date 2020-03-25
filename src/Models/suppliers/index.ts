@@ -187,15 +187,6 @@ const allSuppliers = [
     },
     email: 'aedsupport@philips.com'
   }, {
-    name: 'Philips Healthcare',
-    address: '2 Canal Park, Cambridge, MA 02141',
-    website: 'https://www.usa.philips.com',
-    numbers: {
-      main: '+1 617 613 2402',
-      USA: '+1 800 229 6417',
-    },
-    email: 'aedsupport@philips.com'
-  }, {
     name: 'PMT Partners',
     address: '1920 Hallandale Beach Boulevard Suite 905, Hallandale, FL 33009',
     website: 'https://www.powrsyringe.com',

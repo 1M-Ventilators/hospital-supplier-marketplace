@@ -12,7 +12,7 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { constructOutline, trainOutline, mailOutline, hourglassOutline } from 'ionicons/icons';
-import Home from './pages/Home';
+import Supplier from './pages/Supplier';
 import Training from './pages/Training';
 import Feedback from './pages/Feedback';
 import Tracking from './pages/Tracking';
@@ -44,14 +44,14 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/home" component={Home} exact={true} />
+          <Route path="/supplier" component={Supplier} exact={true} />
           <Route path="/training" component={Training} exact={true} />
           <Route path="/tracking" component={Tracking} exact={true} />
           <Route path="/feedback" component={Feedback} exact={true} />
-          <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
+          <Route path="/" render={() => <Redirect to="/supplier" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
+          <IonTabButton tab="supplier" href="/supplier">
             <IonIcon icon={constructOutline} />
             <IonLabel>Suppliers</IonLabel>
           </IonTabButton>

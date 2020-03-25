@@ -1,4 +1,4 @@
-export const allSuppliers = [
+const allSuppliers = [
   {
     name: 'Airon',
     address: '751 North Dr STE 6, Melbourne, FL 32934',
@@ -270,11 +270,8 @@ export const allSuppliers = [
       USA: '+1 800 348 9011',
     },
     email: 'esales@zoll.com'
-  },  
-]
-
-/* blank template
-
+  },
+  /* Please add new info below
 {
   name: 'Cardinal Health',
   address: '',
@@ -287,4 +284,6 @@ export const allSuppliers = [
   email: ''
 },
 
-*/
+*/  
+]
+export default allSuppliers;

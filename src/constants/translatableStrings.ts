@@ -9,6 +9,7 @@ export default {
   CONTACT: 'Contact us with Feedback',
   SEND: 'Send',
   SUPPLIERS: 'Suppliers',
+  MANUFACTURERS: 'Manufacturers',
   TRAINING: 'Training',
   RESOURCES: 'Resource Tracking',
   SUPPORT: 'Support',

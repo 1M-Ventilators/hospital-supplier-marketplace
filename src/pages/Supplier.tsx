@@ -1,21 +1,24 @@
 import React, { PureComponent } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Supplier.css';
-import SupplierCard from '../components/SupplierCard/SupplierCard'
-import SupplierContact from '../components/SupplierContact'
+import SupplierCard from '../components/suppliers/SupplierCard'
+import SupplierContact from '../components/suppliers/SupplierContact'
 import suppliers from '../Models/suppliers/allSuppliers.json'
 
 interface HomePageState {
-  active: string | null;
+  active: number | null;
   supplierLookup?: {[id: string]: any};
+  rawSuppliers: any[];
 }
 
 export default class Home extends PureComponent<any, HomePageState> {
   state: HomePageState = {
-    active: null
+    active: null,
+    rawSuppliers: suppliers.data,
   }
 
   componentDidMount() {
+    // add supplier object literal to state for supporting URL routing by ID
     if (suppliers && suppliers.data && suppliers.data.length) {
       const supplierMap = suppliers.data.reduce(
         (accumulator, item) => {
@@ -31,13 +34,11 @@ export default class Home extends PureComponent<any, HomePageState> {
     }
   }
 
-  changeActiveSupplier = (id: string | null) => {
-    this.setState({ active: id })
+  changeActiveSupplier = (idx: number | null) => {
+    this.setState({ active: idx })
   }
   render() {
-    const supplierIds: string[] = this.state.supplierLookup ?
-      Object.keys(this.state.supplierLookup!) : 
-      [];
+    const suppliers = this.state.rawSuppliers;
 
     return (
       <IonPage>
@@ -48,15 +49,18 @@ export default class Home extends PureComponent<any, HomePageState> {
         </IonHeader>
           <IonContent color="warning">
             {/* <SupplierCard /> */}
-            {supplierIds.length && supplierIds.map(
-              (id: string) => (
+            {this.state.active === null && suppliers.length && suppliers.map(
+              (eachSupplier: any, index: number) => (
                 <SupplierContact 
-                  supplier={this.state.supplierLookup && this.state.supplierLookup[id]} 
-                  onClick={this.changeActiveSupplier}
-                  key={id}
+                  supplier={eachSupplier} 
+                  onClick={(_) => this.changeActiveSupplier(index)}
+                  key={eachSupplier.id}
                 />
               )
             )}
+            {typeof this.state.active === 'number' &&
+              <SupplierCard supplier={suppliers[this.state.active]} />
+            }
           </IonContent>
       </IonPage>
     );

@@ -17,7 +17,7 @@ const Feedback: React.FC = () => {
             <IonTitle size="large">Contact the Developers</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 3 page" />
+        <ExploreContainer name="This page is under construction. Please check back later." />
       </IonContent>
     </IonPage>
   );

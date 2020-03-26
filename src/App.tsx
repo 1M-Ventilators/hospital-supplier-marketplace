@@ -11,7 +11,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
-import { constructOutline, trainOutline, mailOutline, hourglassOutline } from 'ionicons/icons';
+import { constructOutline, mailOutline } from 'ionicons/icons';
 import Supplier from './pages/Supplier';
 import Training from './pages/Training';
 import Feedback from './pages/Feedback';
@@ -53,16 +53,16 @@ const App: React.FC = () => (
         <IonTabBar slot="bottom">
           <IonTabButton tab="supplier" href="/supplier">
             <IonIcon icon={constructOutline} />
-            <IonLabel>Suppliers</IonLabel>
+            <IonLabel>Manufacturers</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="training" href="/training">
+          {/* <IonTabButton tab="training" href="/training">
             <IonIcon icon={trainOutline} />
             <IonLabel>Training</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tracking" href="/tracking">
             <IonIcon icon={hourglassOutline} />
             <IonLabel>Resource Tracking</IonLabel>
-          </IonTabButton>
+          </IonTabButton> */}
           <IonTabButton tab="feedback" href="/feedback">
             <IonIcon icon={mailOutline} />
             <IonLabel>Support</IonLabel>

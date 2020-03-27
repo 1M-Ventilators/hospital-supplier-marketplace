@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar } from '@ionic/react';
 import './Supplier.css';
 import { connect } from 'react-redux';
 import SupplierContact from '../components/suppliers/SupplierContact'
@@ -9,10 +9,19 @@ interface HomePageProps {
   history: any; // react router
 }
 
-class Home extends PureComponent<HomePageProps> {
-  render() {
-    const { suppliers } = this.props;
+interface StateProps {
+  searchText: any
+}
 
+class Home extends PureComponent<HomePageProps, StateProps> {
+  constructor(props: HomePageProps) {
+    super(props);
+    this.state = { searchText: '' };
+  }
+  setSearchText(e: any) {
+    this.setState({ searchText: e.detail.value! })
+  }
+  render() {
     return (
       <IonPage>
         <IonHeader>
@@ -21,8 +30,13 @@ class Home extends PureComponent<HomePageProps> {
           </IonToolbar>
         </IonHeader>
         <IonContent>
+          <IonSearchbar value={this.state.searchText} 
+            onIonChange={e => this.setSearchText(e)} 
+            placeholder="Search for supplier">  
+          </IonSearchbar>
           <div className="SupplierPage-container">
-            {suppliers && suppliers.map(
+            {this.props.suppliers && this.props.suppliers.filter(
+              (s: any) => s.name.toLowerCase().includes(this.state.searchText.toLowerCase())).map(
               (eachSupplier: any) => (
                 <SupplierContact
                   supplier={eachSupplier}

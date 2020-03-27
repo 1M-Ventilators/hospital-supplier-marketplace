@@ -4,3 +4,13 @@ ion-content ion-toolbar {
 .SupplierPage-title {
   text-align: center;
 }
+.SupplierPage-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (max-width: 960px) {
+  .SupplierPage-container {
+    grid-template-columns: 1fr;
+  }
+}

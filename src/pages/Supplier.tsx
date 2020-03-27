@@ -12,7 +12,6 @@ interface HomePageProps {
 class Home extends PureComponent<HomePageProps> {
   render() {
     const { suppliers } = this.props;
-
     return (
       <IonPage>
         <IonHeader>

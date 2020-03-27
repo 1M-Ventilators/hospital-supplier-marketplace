@@ -7,7 +7,6 @@ export function setActiveSupplier(id: string) {
     payload: { id }
   };
 }
-
 export function discardActiveSupplier()  {
   return {
     type: SET_ACTIVE_SUPPLIER,

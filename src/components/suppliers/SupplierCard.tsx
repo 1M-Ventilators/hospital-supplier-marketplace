@@ -1,16 +1,21 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { IonCard, IonCardTitle, IonCardContent, IonPage, IonHeader, IonContent, IonToolbar, IonTitle, IonBackButton, IonButtons} from '@ionic/react';
+import { IonCard, IonCardContent, IonPage, IonHeader, IonContent, IonToolbar, IonTitle, IonBackButton, IonButtons, IonButton, IonIcon} from '@ionic/react';
+import {  call, chevronForward, chevronBack } from 'ionicons/icons'
 import './SupplierCard.css';
 
 interface SupplierCardProps {
+  onClick?: (event: any) => any;
   match: any;
   history: any;
   supplierLookup: any;
+
 }
 
 function SupplierCard(props: SupplierCardProps) {
-  const { match, history, supplierLookup } = props;
+  const {  match, history, supplierLookup } = props;
+  console.log(props)
+
   let supplier: any;
   let supplierId: string = match && match.params && match.params.id;
   if (supplierId && supplierId in supplierLookup) {
@@ -32,25 +37,48 @@ function SupplierCard(props: SupplierCardProps) {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonCard>
-          <IonCardContent>
-            <IonCardTitle>{supplier.name}</IonCardTitle>
+        <IonCard className='CardDetailView'>
             <IonCardContent>
-            <p><strong>Phone Number:</strong> {supplier.numbers.main}</p>
-            <p><strong>Email:</strong> {supplier.email}</p>
-            <p><strong>Website:</strong> <a target="blank" href={supplier.website}>{supplier.website}</a></p>
-            <p><strong>Address:</strong> {supplier.address}</p>
+            <p className='supplierName col'>{supplier.name}</p>
+            <hr />
+            <p className='col'>{supplier.address}</p>
+            <hr/>
+            <p className='col'><a target="blank" href={supplier.website}>{supplier.website}</a></p>
+            <hr/>
+            <p className='col'>{supplier.numbers.main}</p>
+            <hr/>
+            <p className='col'>{supplier.email}</p>
             </IonCardContent>
-          </IonCardContent>
         </IonCard>
+        <IonToolbar color="secondary">
+          <div className='supplierCard-footer'>
+            <IonButtons onClick={props.onClick} className="SupplierCard-Prev">
+                <IonIcon size="large" icon={chevronBack} color="light" slot="icon-only"/>
+              </IonButtons>
+              <a href={
+                supplier && supplier.numbers && supplier.numbers.main ?
+                `tel:${supplier.numbers.main}` :
+                '#'
+              }>
+              <IonButton shape="round" className="SupplierContact-call">
+                <IonIcon  size="large" icon={call} color="light" slot="icon-only"/>
+              </IonButton>
+            </a>
+            <IonButtons onClick={props.onClick} className="SupplierCard-Next">
+                <IonIcon  size="large" icon={chevronForward} color="light" slot="icon-only"/>
+            </IonButtons>
+          </div>
+        </IonToolbar> 
       </IonContent>
     </IonPage>
   );
 }
 
 const mapStateToProps = (globalState) => {
+  console.log(globalState)
   return {
-    supplierLookup: globalState.suppliers.all
+    supplierLookup: globalState.suppliers.all,
   };
+
 }
 export default connect(mapStateToProps)(SupplierCard);

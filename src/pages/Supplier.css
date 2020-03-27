@@ -1,3 +1,6 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
+.SupplierPage-title {
+  text-align: center;
+}

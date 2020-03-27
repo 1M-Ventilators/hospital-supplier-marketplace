@@ -2,59 +2,71 @@ import React, { PureComponent } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon } from '@ionic/react';
 import './Supplier.css';
 import { connect } from 'react-redux';
-import SuppliersModel from '../Models/suppliers';
+import supplierModel from '../Models/suppliers';
 import SupplierCard from '../components/suppliers/SupplierCard'
 import SupplierContact from '../components/suppliers/SupplierContact'
-import suppliers from '../Models/suppliers/allSuppliers.json'
 
-interface HomePageState {
-  active: number | null;
-  supplierLookup?: { [id: string]: any };
-  rawSuppliers: any[];
+interface HomePageProps {
+  suppliers: any[];
+  history: any; // react router
 }
 
-export default class Home extends PureComponent<any, HomePageState> {
-  state: HomePageState = {
-    active: null,
-    rawSuppliers: suppliers.data,
-  }
-
-  changeActiveSupplier = (idx: number | null) => {
-    this.setState({ active: idx })
-  }
+class Home extends PureComponent<HomePageProps> {
   render() {
-    const suppliers = this.state.rawSuppliers;
+    const { suppliers } = this.props;
 
     return (
       <IonPage>
         <IonHeader>
-          <IonToolbar>
-            {this.state.active !== null &&
-              <IonButtons slot="start">
-                <IonButton color="primary" onClick={(_) => this.changeActiveSupplier(null)}>
-                  <IonIcon icon="chevron-back" /> Back
-                </IonButton>
-              </IonButtons>
-            }
-            <IonTitle>Ventilator Manufacturers</IonTitle>
+          <IonToolbar color="secondary">
+            {/* {this.renderBackButton()} */}
+            <IonTitle className="SupplierPage-title" color="light">Ventilator Manufacturers</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent color="warning">
+        <IonContent>
           {/* <SupplierCard /> */}
-          {this.state.active === null && suppliers.length && suppliers.map(
-            (eachSupplier: any, index: number) => (
+          {suppliers && suppliers.map(
+            (eachSupplier: any) => (
               <SupplierContact
                 supplier={eachSupplier}
-                onClick={(_) => this.changeActiveSupplier(index)}
                 key={eachSupplier.id}
               />
             )
           )}
-          {typeof this.state.active === 'number' &&
+          {/* {typeof this.state.active === 'number' &&
             <SupplierCard supplier={suppliers[this.state.active]} />
-          }
+          } */}
         </IonContent>
       </IonPage >
     );
   }
+  // renderBackButton() {
+  //   return this.state.active !== null && (
+  //     <IonButtons slot="start">
+  //       <IonButton color="primary" onClick={(_) => this.changeActiveSupplier(null)}>
+  //         <IonIcon icon="chevron-back" /> Back
+  //       </IonButton>
+  //     </IonButtons>
+  //   )
+  // }
 };
+
+// creates a single prop (list of suppliers with index) to add to component 
+const mapStateToProps = (state: any) => ({
+  suppliers: state.suppliers && state.suppliers.ordered.map(
+    (supplierId: string, index: number) => {
+      const supplierLookup = state.suppliers.all;
+      if (supplierId in supplierLookup) {
+        const supplier = supplierLookup[supplierId]
+        return {
+          ...supplier,
+          index
+        };
+      } else {
+        console.warn('Supplier not found in store: ', supplierId);
+        return null;
+      }
+    }
+  ),
+});
+export default connect(mapStateToProps)(Home);

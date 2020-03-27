@@ -48,8 +48,8 @@ const App: React.FC = () => (
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
+            <Route path="/supplier/:id" component={SupplierCard}/>
             <Route path="/supplier" component={Supplier} exact={true} />
-            <Route path="/supplier/:id" component={SupplierCard} />
             <Route path="/training" component={Training} exact={true} />
             <Route path="/tracking" component={Tracking} exact={true} />
             <Route path="/feedback" component={Feedback} exact={true} />

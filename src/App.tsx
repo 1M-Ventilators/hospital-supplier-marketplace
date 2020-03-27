@@ -1,4 +1,5 @@
 import React from 'react';
+import { Provider } from 'react-redux'
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
@@ -16,6 +17,8 @@ import Supplier from './pages/Supplier';
 import Training from './pages/Training';
 import Feedback from './pages/Feedback';
 import Tracking from './pages/Tracking';
+import SupplierCard from './components/suppliers/SupplierCard';
+import store from './Models/store';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -41,35 +44,38 @@ defineCustomElements(window);
 
 const App: React.FC = () => (
   <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route path="/supplier" component={Supplier} exact={true} />
-          <Route path="/training" component={Training} exact={true} />
-          <Route path="/tracking" component={Tracking} exact={true} />
-          <Route path="/feedback" component={Feedback} exact={true} />
-          <Route path="/" render={() => <Redirect to="/supplier" />} exact={true} />
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="supplier" href="/supplier">
-            <IonIcon icon={constructOutline} />
-            <IonLabel>Manufacturers</IonLabel>
-          </IonTabButton>
-          {/* <IonTabButton tab="training" href="/training">
-            <IonIcon icon={trainOutline} />
-            <IonLabel>Training</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tracking" href="/tracking">
-            <IonIcon icon={hourglassOutline} />
-            <IonLabel>Resource Tracking</IonLabel>
-          </IonTabButton> */}
-          <IonTabButton tab="feedback" href="/feedback">
-            <IonIcon icon={mailOutline} />
-            <IonLabel>Support</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
+    <Provider store={store}>
+      <IonReactRouter>
+        <IonTabs>
+          <IonRouterOutlet>
+            <Route path="/supplier/:id" component={SupplierCard}/>
+            <Route path="/supplier" component={Supplier} exact={true} />
+            <Route path="/training" component={Training} exact={true} />
+            <Route path="/tracking" component={Tracking} exact={true} />
+            <Route path="/feedback" component={Feedback} exact={true} />
+            <Route path="/" render={() => <Redirect to="/supplier" />} exact={true} />
+          </IonRouterOutlet>
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="supplier" href="/supplier">
+              <IonIcon icon={constructOutline} />
+              <IonLabel>Manufacturers</IonLabel>
+            </IonTabButton>
+            {/* <IonTabButton tab="training" href="/training">
+              <IonIcon icon={trainOutline} />
+              <IonLabel>Training</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="tracking" href="/tracking">
+              <IonIcon icon={hourglassOutline} />
+              <IonLabel>Resource Tracking</IonLabel>
+            </IonTabButton> */}
+            <IonTabButton tab="feedback" href="/feedback">
+              <IonIcon icon={mailOutline} />
+              <IonLabel>Support</IonLabel>
+            </IonTabButton>
+          </IonTabBar>
+        </IonTabs>
+      </IonReactRouter>
+    </Provider>
   </IonApp>
 );
 

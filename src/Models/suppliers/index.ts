@@ -1,3 +1,6 @@
-import allSuppliers from './allSuppliers.json'
-
-export default { allSuppliers };
+export default {
+  setActive(id: string) {},
+  setActiveByIndex(idx: number) {},
+  goNext() {},
+  goPrev() {},  
+};

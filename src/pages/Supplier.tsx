@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Supplier.css';
+import { connect } from 'react-redux';
+import SuppliersModel from '../Models/suppliers';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import SupplierCard from '../components/suppliers/SupplierCard'
 import SupplierContact from '../components/suppliers/SupplierContact'
 import suppliers from '../Models/suppliers/allSuppliers.json'
@@ -15,23 +17,6 @@ export default class Home extends PureComponent<any, HomePageState> {
   state: HomePageState = {
     active: null,
     rawSuppliers: suppliers.data,
-  }
-
-  componentDidMount() {
-    // add supplier object literal to state for supporting URL routing by ID
-    if (suppliers && suppliers.data && suppliers.data.length) {
-      const supplierMap = suppliers.data.reduce(
-        (accumulator, item) => {
-          if (item.id) {
-            accumulator[item.id] = item;
-          }
-          return accumulator;
-        }, {}
-      );
-      this.setState({
-        supplierLookup: supplierMap
-      })
-    }
   }
 
   changeActiveSupplier = (idx: number | null) => {

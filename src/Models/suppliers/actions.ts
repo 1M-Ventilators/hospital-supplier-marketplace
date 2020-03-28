@@ -1,6 +1,7 @@
 export const SET_ACTIVE_SUPPLIER = 'SET_ACTIVE_SUPPLIER'
 export const SET_ACTIVE_BY_INDEX = 'SET_ACTIVE_BY_INDEX'
-
+export const INCREMENT = 'INCREMENT'
+export const DECREMENT = 'DECREMENT'
 export function setActiveSupplier(id: string) {
   return {
     type: SET_ACTIVE_SUPPLIER,
@@ -18,5 +19,19 @@ export function setActiveSupplierByIndex(idx: number) {
   return {
     type: SET_ACTIVE_BY_INDEX,
     payload: { index: idx }
+  };
+}
+
+export function PrevSupplier(idx: number) {
+  return {
+    type: INCREMENT,
+    payload: { index:idx}
+  };
+}
+
+export function NextSupplier(idx: number) {
+  return {
+    type: DECREMENT,
+    payload: { index: idx}
   };
 }
